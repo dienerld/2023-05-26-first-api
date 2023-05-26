@@ -1,6 +1,7 @@
 package dev.dienerld.Firstapi.users;
 
 
+import dev.dienerld.Firstapi.tasks.Task;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ public class User {
     private int id;
     private String name;
     private String lastName;
-    private ArrayList<String> tasks;
+    private ArrayList<Task> tasks;
 
     public User(UserDto dto) {
         this.name = dto.name();
@@ -24,8 +25,11 @@ public class User {
         this.tasks = new ArrayList<>();
     }
 
-    public void updateUser(UserDto dto) {
-        this.name = dto.name();
-        this.lastName = dto.lastName();
+    public void updateUser(UpdateUserDto dto) {
+        if (dto.lastName() != null) this.lastName = dto.lastName();
+    }
+
+    public void addTask(Task task) {
+        tasks.add(task);
     }
 }
